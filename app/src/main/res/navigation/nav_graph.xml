@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/home_movies_fragment">
+
+    <fragment
+        android:id="@+id/home_movies_fragment"
+        android:name="br.com.dhungria.mobappsmovies.ui.homemovies.HomeMoviesFragment"
+        android:label="Home Movies Fragment"
+        tools:layout="@layout/home_movies_fragment">
+
+        <action
+            android:id="@+id/action_home_movies_to_detail_movie"
+            app:destination="@+id/detail_movie_fragment" />
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/detail_movie_fragment"
+        android:name="br.com.dhungria.mobappsmovies.ui.detailmovie.DetailMovieFragment"
+        android:label="Detail Movie Fragment"
+        tools:layout="@layout/detail_movies_fragment" />
+
+</navigation>

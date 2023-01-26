@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view_now_playing"
+        android:layout_width="200dp"
+        android:layout_height="300dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="15dp"
+        style="@style/Widget.Material3.CardView.Elevated">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/avatar_2_poster"
+                android:scaleType="centerCrop">
+            </ImageView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@drawable/gradient_bottom"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/text_view_title_movie_card_now_playing"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/card_view_now_playing"
+        app:layout_constraintStart_toStartOf="@+id/card_view_now_playing"
+        app:layout_constraintEnd_toEndOf="@id/card_view_now_playing"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="2dp"
+        android:text="Avatar 2 - The Way of Water"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#E8E8E8"
+        />
+
+
+    <TextView
+        android:id="@+id/text_view_date_movie_card_now_playing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_title_movie_card_now_playing"
+        app:layout_constraintStart_toStartOf="@+id/text_view_title_movie_card_now_playing"
+        android:layout_marginTop="4dp"
+        android:textSize="12sp"
+        android:text="14/12/2022"
+        android:textColor="#E8E8E8"
+        />
+
+    <TextView
+        android:id="@+id/text_view_average_movie_card_now_playing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_date_movie_card_now_playing"
+        app:layout_constraintStart_toStartOf="@+id/text_view_date_movie_card_now_playing"
+        android:layout_marginTop="4dp"
+        android:textSize="12sp"
+        android:text="⭐️ 8/10"
+        android:textColor="#E8E8E8"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
