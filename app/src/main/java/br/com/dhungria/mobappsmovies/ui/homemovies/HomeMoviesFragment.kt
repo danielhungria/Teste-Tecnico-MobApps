@@ -10,9 +10,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.dhungria.mobappsmovies.R
-import br.com.dhungria.mobappsmovies.adapter.GenresPlayingMoviesAdapter
 import br.com.dhungria.mobappsmovies.adapter.NowPlayingMoviesAdapter
 import br.com.dhungria.mobappsmovies.adapter.PopularMoviesAdapter
+import br.com.dhungria.mobappsmovies.data.models.MovieNowPlayingModel
 import br.com.dhungria.mobappsmovies.databinding.HomeMoviesFragmentBinding
 import br.com.dhungria.mobappsmovies.viewmodel.HomeMoviesViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,6 +25,8 @@ class HomeMoviesFragment : Fragment() {
     private val popularMoviesAdapter = PopularMoviesAdapter()
 
     private val viewModel: HomeMoviesViewModel by viewModels()
+
+    private var page = 1
 
 
     private val nowPlayingMoviesAdapter = NowPlayingMoviesAdapter(
@@ -40,7 +42,7 @@ class HomeMoviesFragment : Fragment() {
     private fun setupRecyclerPopularMovies() {
         binding.recyclerViewPopularMoviesHomeFragment.apply {
             adapter = popularMoviesAdapter.apply {
-                submitList(  List(10, init = {
+                submitList(List(10, init = {
                     "test"
                 })).toString()
             }
@@ -49,6 +51,7 @@ class HomeMoviesFragment : Fragment() {
             layoutManager = mLayoutManager
         }
     }
+
 
     private fun setupRecyclerNowPlayingMovies() {
         binding.recyclerViewNowPlayingMoviesHomeFragment.apply {
@@ -73,9 +76,52 @@ class HomeMoviesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerPopularMovies()
         setupRecyclerNowPlayingMovies()
-        viewModel.getMoviesNowPlayingData()
-        viewModel.moviesNowPlayingModel.observe(viewLifecycleOwner){
+        viewModel.getMoviesNowPlayingData(page)
+        viewModel.moviesNowPlayingModel.observe(viewLifecycleOwner) {
             nowPlayingMoviesAdapter.updateList(it.results)
+            setupPageListenet(it)
+
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                binding.recyclerViewNowPlayingMoviesHomeFragment.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+//
+//                    if (!v.canScrollHorizontally(1)) {
+////                        if (page < it.total_pages) {
+////                            page++
+////                            viewModel.getMoviesNowPlayingData(page)
+////                            nowPlayingMoviesAdapter.updateList(it.results)
+////                        }
+//
+//                    } else if (!v.canScrollHorizontally(-1)) {
+//                        if (page > 1) {
+//                            page--
+//                            viewModel.getMoviesNowPlayingData(page)
+//                            nowPlayingMoviesAdapter.updateList(it.results)
+//                        }
+//                    }
+//
+//
+//                }
+//            }
+
+        }
+
+    }
+
+    private fun setupPageListenet(it: MovieNowPlayingModel) = with(binding) {
+        textViewPageNumber.text = it.page.toString()
+        buttonNavigateNextPage.setOnClickListener { _ ->
+            if (page < it.total_pages) {
+                page++
+                viewModel.getMoviesNowPlayingData(page)
+            }
+        }
+        buttonNavigatePreviousPage.setOnClickListener { _ ->
+            if (page > 1) {
+                page--
+                viewModel.getMoviesNowPlayingData(page)
+
+            }
         }
     }
+
 }

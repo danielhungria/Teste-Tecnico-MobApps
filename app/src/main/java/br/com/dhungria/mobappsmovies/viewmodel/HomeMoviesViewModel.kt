@@ -23,8 +23,8 @@ class HomeMoviesViewModel @Inject constructor(
     val errorMessage = MutableLiveData<String>()
 
 
-    fun getMoviesNowPlayingData() {
-        val request = repository.getMoviesNowPlaying()
+    fun getMoviesNowPlayingData(page: Int) {
+        val request = repository.getMoviesNowPlaying(page)
 
         request.enqueue(object : Callback<MovieNowPlayingModel> {
             override fun onResponse(
