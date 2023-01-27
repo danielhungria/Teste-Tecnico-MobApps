@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.dhungria.mobappsmovies.R
+import br.com.dhungria.mobappsmovies.adapter.GenresPlayingMoviesAdapter
 import br.com.dhungria.mobappsmovies.adapter.NowPlayingMoviesAdapter
 import br.com.dhungria.mobappsmovies.adapter.PopularMoviesAdapter
 import br.com.dhungria.mobappsmovies.databinding.HomeMoviesFragmentBinding
@@ -24,6 +25,7 @@ class HomeMoviesFragment : Fragment() {
     private val popularMoviesAdapter = PopularMoviesAdapter()
 
     private val viewModel: HomeMoviesViewModel by viewModels()
+
 
     private val nowPlayingMoviesAdapter = NowPlayingMoviesAdapter(
         onClick = {
@@ -56,6 +58,7 @@ class HomeMoviesFragment : Fragment() {
             layoutManager = mLayoutManager
         }
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
