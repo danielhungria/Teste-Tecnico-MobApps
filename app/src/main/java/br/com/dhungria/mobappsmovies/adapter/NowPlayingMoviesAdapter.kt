@@ -5,52 +5,48 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import br.com.dhungria.mobappsmovies.data.models.Result
 import br.com.dhungria.mobappsmovies.databinding.CardViewRecyclerNowPlayingBinding
+import br.com.dhungria.mobappsmovies.extensions.tryLoadImage
+import com.bumptech.glide.Glide
+import java.text.SimpleDateFormat
+import java.util.*
 
 class NowPlayingMoviesAdapter(
-    val onClick: () -> Unit
+    val onClick: (Result) -> Unit
 ) :
-    ListAdapter<String, NowPlayingMoviesAdapter.ViewHolder>(DiffCallback()) {
+    ListAdapter<Result, NowPlayingMoviesAdapter.ViewHolder>(DiffCallback()) {
 
-//    private var fullList = mutableListOf<Training>()
+    private var fullList = mutableListOf<Result>()
 
-//    private fun showMenu(
-//        context: Context,
-//        view: View,
-//        menuPopupMenu: Int,
-//        training: Training
-//    ) {
-//        val popup = PopupMenu(context, view)
-//        popup.menuInflater.inflate(menuPopupMenu, popup.menu)
-//        popup.setOnMenuItemClickListener {
-//            when (it.itemId) {
-//                R.id.edit_popup_menu -> {
-//                    onLongPressEdit(training)
-//                    true
-//                }
-//                R.id.delete_popup_menu -> {
-//                    onLongPressDelete(training)
-//                    true
-//                }
-//                else -> false
-//            }
-//        }
-//        popup.show()
-//    }
+    fun updateList(listMoviesNowPlaying: List<Result>) {
+        fullList = listMoviesNowPlaying.toMutableList()
 
-//    fun updateList(listTraining: List<Training>) {
-//        fullList = listTraining.toMutableList()
-//
-//        submitList(fullList)
-//    }
+        submitList(fullList)
+    }
 
     inner class ViewHolder(
         private val binding: CardViewRecyclerNowPlayingBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(currentItem: String) {
-            binding.root.setOnClickListener {
-                onClick()
+        fun bind(currentItem: Result) = with(binding){
+
+            val dateDefault = currentItem.release_date
+            val parser = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+            val result = parser.parse(dateDefault)?.let { formatter.format(it) }
+
+//            Glide.with(root.context)
+//                .load("https://image.tmdb.org/t/p/original${currentItem.poster_path}")
+//                .into(imageViewCardViewNowPlaying)
+
+            textViewTitleMovieCardNowPlaying.text = currentItem.title
+            textViewAverageMovieCardNowPlaying.text = "⭐ ️${currentItem.vote_average}/10"
+            binding.textViewDateMovieCardNowPlaying.text = result
+            imageViewCardViewNowPlaying.tryLoadImage("https://image.tmdb.org/t/p/original${currentItem.poster_path}")
+
+            root.setOnClickListener {
+                onClick(currentItem)
             }
         }
 
@@ -70,11 +66,11 @@ class NowPlayingMoviesAdapter(
         return holder.bind(currentItem)
     }
 
-    class DiffCallback : DiffUtil.ItemCallback<String>() {
-        override fun areItemsTheSame(oldItem: String, newItem: String) =
+    class DiffCallback : DiffUtil.ItemCallback<Result>() {
+        override fun areItemsTheSame(oldItem: Result, newItem: Result) =
             oldItem == newItem
 
-        override fun areContentsTheSame(oldItem: String, newItem: String) =
+        override fun areContentsTheSame(oldItem: Result, newItem: Result) =
             oldItem == newItem
     }
 

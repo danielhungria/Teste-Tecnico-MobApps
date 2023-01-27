@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="br.com.dhungria.mobappsmovies">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".application.MainApplication"
         android:allowBackup="true"

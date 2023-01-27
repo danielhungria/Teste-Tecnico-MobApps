@@ -36,6 +36,13 @@
                 android:background="@drawable/gradient_bottom"
                 app:layout_constraintBottom_toBottomOf="@id/image_view_detail_movie_fragment" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@drawable/gradient_top"
+                />
+
 
             <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/top_bar_detail_movie_fragment"
@@ -85,6 +92,7 @@
                         app:layout_constraintEnd_toEndOf="parent"/>
 
                     <TextView
+                        android:id="@+id/text_view_rated_movie_detail"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         app:layout_constraintTop_toBottomOf="@+id/icon_star_rate_movie_detail"
@@ -144,68 +152,16 @@
                 app:layout_constraintStart_toStartOf="@id/text_view_title_detail_movie"
                 app:layout_constraintTop_toBottomOf="@+id/text_view_title_detail_movie" />
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card_view_1_genre_movie_detail"
-                style="@style/Widget.Material3.CardView.Elevated"
+            <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:backgroundTint="#202020"
-                app:cardCornerRadius="20dp"
+                android:layout_marginStart="30dp"
                 app:layout_constraintBottom_toBottomOf="@id/text_view_time_duration_detail_movie"
                 app:layout_constraintStart_toEndOf="@+id/text_view_time_duration_detail_movie"
-                app:layout_constraintTop_toTopOf="@id/text_view_time_duration_detail_movie">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:text="Animation"
-                    android:textColor="#AFAFAF" />
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card_view_2_genre_movie_detail"
-                style="@style/Widget.Material3.CardView.Elevated"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:backgroundTint="#202020"
-                app:cardCornerRadius="20dp"
-                app:layout_constraintBottom_toBottomOf="@id/card_view_1_genre_movie_detail"
-                app:layout_constraintStart_toEndOf="@+id/card_view_1_genre_movie_detail"
-                app:layout_constraintTop_toTopOf="@id/card_view_1_genre_movie_detail">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:text="Adventure"
-                    android:textColor="#AFAFAF" />
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card_view_3_genre_movie_detail"
-                style="@style/Widget.Material3.CardView.Elevated"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:backgroundTint="#202020"
-                app:cardCornerRadius="20dp"
-                app:layout_constraintBottom_toBottomOf="@id/card_view_2_genre_movie_detail"
-                app:layout_constraintStart_toEndOf="@+id/card_view_2_genre_movie_detail"
-                app:layout_constraintTop_toTopOf="@id/card_view_2_genre_movie_detail">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:text="Action"
-                    android:textColor="#AFAFAF" />
-
-            </com.google.android.material.card.MaterialCardView>
+                app:layout_constraintTop_toTopOf="@id/text_view_time_duration_detail_movie"
+                tools:listitem="@layout/card_view_recycler_genres_detail"
+                tools:itemCount="1"
+                />
 
             <TextView
                 android:id="@+id/text_view_title_description_detail_movie"

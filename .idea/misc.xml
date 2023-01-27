@@ -4,8 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/gradient_bottom.xml" value="0.1475" />
+        <entry key="app/src/main/res/drawable/gradient_top.xml" value="0.1475" />
         <entry key="app/src/main/res/drawable/ic_baseline_access_time_24.xml" value="0.1475" />
+        <entry key="app/src/main/res/drawable/placeholder.xml" value="0.1475" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1175925925925926" />
+        <entry key="app/src/main/res/layout/card_view_recycler_genres_detail.xml" value="0.335" />
         <entry key="app/src/main/res/layout/card_view_recycler_now_playing.xml" value="0.25" />
         <entry key="app/src/main/res/layout/card_view_recycler_popular_movies.xml" value="0.21148163782186577" />
         <entry key="app/src/main/res/layout/detail_movies_fragment.xml" value="0.25" />
