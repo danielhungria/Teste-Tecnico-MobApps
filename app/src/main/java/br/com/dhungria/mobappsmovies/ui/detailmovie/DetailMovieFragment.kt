@@ -87,7 +87,7 @@ class DetailMovieFragment : Fragment() {
         setupRecycler()
         setupSwipeRefresh()
         binding.toolbarDetailMovieFragment.setNavigationOnClickListener { findNavController().popBackStack() }
-        movieID?.let { viewModel.getMoviesNowPlayingData(it) }
+        lifecycleScope.launch{ movieID?.let { viewModel.getMoviesNowPlayingData(it) } }
         viewModel.detailMovieModel.observe(viewLifecycleOwner) { setupItemsView(it) }
     }
 }

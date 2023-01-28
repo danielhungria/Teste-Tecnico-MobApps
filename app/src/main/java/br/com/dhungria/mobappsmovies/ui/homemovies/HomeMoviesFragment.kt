@@ -106,14 +106,14 @@ class HomeMoviesFragment : Fragment() {
         setupRecyclerPopularMovies()
         setupRecyclerNowPlayingMovies()
         setupSwipeRefresh()
-        viewModel.getMoviesNowPlayingData()
-        viewModel.getMoviesTopRatedData()
+        lifecycleScope.launch {
+            viewModel.getMoviesNowPlayingData()
+            viewModel.getMoviesTopRatedData()
+        }
         viewModel.moviesNowPlayingModel.observe(viewLifecycleOwner) {
             nowPlayingMoviesAdapter.updateList(it.results)
             setupPageListener(it)
         }
-        viewModel.moviesTopRatedModel.observe(viewLifecycleOwner) {
-            popularMoviesAdapter.updateList(it.results)
-        }
+        viewModel.moviesTopRatedModel.observe(viewLifecycleOwner) { popularMoviesAdapter.updateList(it.results) }
     }
 }
