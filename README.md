@@ -44,6 +44,8 @@
 - Listar mais categorias
 
 - Network state
+
+- Search
     
 - Mapper (Filtrar o model que vem da api)
 
