@@ -87,7 +87,8 @@
                     android:background="@drawable/ic_baseline_navigate_before_24"
                     app:layout_constraintBottom_toBottomOf="@id/text_view_now_playing"
                     app:layout_constraintEnd_toStartOf="@+id/button_navigate_next_page"
-                    app:layout_constraintTop_toTopOf="@id/text_view_now_playing" />
+                    app:layout_constraintTop_toTopOf="@id/text_view_now_playing"
+                    style="@style/Widget.Material3.Button.IconButton.Filled"/>
 
                 <TextView
                     android:id="@+id/text_view_page_number"
@@ -108,7 +109,8 @@
                     android:background="@drawable/ic_baseline_navigate_next_24"
                     app:layout_constraintBottom_toBottomOf="@id/text_view_now_playing"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/text_view_now_playing" />
+                    app:layout_constraintTop_toTopOf="@id/text_view_now_playing"
+                    style="@style/Widget.Material3.Button.IconButton.Filled"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_view_now_playing_movies_home_fragment"
