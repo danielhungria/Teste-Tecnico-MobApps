@@ -36,10 +36,6 @@ class NowPlayingMoviesAdapter(
             val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
             val result = parser.parse(dateDefault)?.let { formatter.format(it) }
 
-//            Glide.with(root.context)
-//                .load("https://image.tmdb.org/t/p/original${currentItem.poster_path}")
-//                .into(imageViewCardViewNowPlaying)
-
             textViewTitleMovieCardNowPlaying.text = currentItem.title
             textViewAverageMovieCardNowPlaying.text = "⭐ ️${currentItem.vote_average}/10"
             binding.textViewDateMovieCardNowPlaying.text = result

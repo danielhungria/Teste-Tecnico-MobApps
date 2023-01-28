@@ -5,50 +5,35 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import br.com.dhungria.mobappsmovies.data.models.Result_Top_Rated
 import br.com.dhungria.mobappsmovies.databinding.LayoutRecyclerPopularMoviesBinding
+import br.com.dhungria.mobappsmovies.extensions.tryLoadImage
 
-class PopularMoviesAdapter() :
-    ListAdapter<String, PopularMoviesAdapter.ViewHolder>(DiffCallback()) {
+class PopularMoviesAdapter(
+    val onClick: (Result_Top_Rated) -> Unit
+) :
+    ListAdapter<Result_Top_Rated, PopularMoviesAdapter.ViewHolder>(DiffCallback()) {
 
-//    private var fullList = mutableListOf<Training>()
+    private var fullList = mutableListOf<Result_Top_Rated>()
 
-//    private fun showMenu(
-//        context: Context,
-//        view: View,
-//        menuPopupMenu: Int,
-//        training: Training
-//    ) {
-//        val popup = PopupMenu(context, view)
-//        popup.menuInflater.inflate(menuPopupMenu, popup.menu)
-//        popup.setOnMenuItemClickListener {
-//            when (it.itemId) {
-//                R.id.edit_popup_menu -> {
-//                    onLongPressEdit(training)
-//                    true
-//                }
-//                R.id.delete_popup_menu -> {
-//                    onLongPressDelete(training)
-//                    true
-//                }
-//                else -> false
-//            }
-//        }
-//        popup.show()
-//    }
 
-//    fun updateList(listTraining: List<Training>) {
-//        fullList = listTraining.toMutableList()
-//
-//        submitList(fullList)
-//    }
+    fun updateList(listMovieTopRated: List<Result_Top_Rated>) {
+        fullList = listMovieTopRated.toMutableList()
+
+        submitList(fullList)
+    }
 
     inner class ViewHolder(
         private val binding: LayoutRecyclerPopularMoviesBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(currentItem: String) {
-        }
+        fun bind(currentItem: Result_Top_Rated) = with(binding) {
+            imageCardView.tryLoadImage("https://image.tmdb.org/t/p/original${currentItem.poster_path}")
 
+            root.setOnClickListener {
+                onClick(currentItem)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -65,11 +50,11 @@ class PopularMoviesAdapter() :
         return holder.bind(currentItem)
     }
 
-    class DiffCallback : DiffUtil.ItemCallback<String>() {
-        override fun areItemsTheSame(oldItem: String, newItem: String) =
+    class DiffCallback : DiffUtil.ItemCallback<Result_Top_Rated>() {
+        override fun areItemsTheSame(oldItem: Result_Top_Rated, newItem: Result_Top_Rated) =
             oldItem == newItem
 
-        override fun areContentsTheSame(oldItem: String, newItem: String) =
+        override fun areContentsTheSame(oldItem: Result_Top_Rated, newItem: Result_Top_Rated) =
             oldItem == newItem
     }
 

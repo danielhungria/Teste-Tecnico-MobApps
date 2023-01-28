@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.dhungria.mobappsmovies.data.models.MovieNowPlayingModel
+import br.com.dhungria.mobappsmovies.data.models.MovieTopRatedModel
 import br.com.dhungria.mobappsmovies.repositories.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
@@ -20,10 +21,17 @@ class HomeMoviesViewModel @Inject constructor(
     val moviesNowPlayingModel: LiveData<MovieNowPlayingModel>
         get() = _moviesNowPlayingModel
 
+
+    private val _moviesTopRatedModel = MutableLiveData<MovieTopRatedModel>()
+    val moviesTopRatedModel: LiveData<MovieTopRatedModel>
+        get() = _moviesTopRatedModel
+
     val errorMessage = MutableLiveData<String>()
 
+    var page = 1
 
-    fun getMoviesNowPlayingData(page: Int) {
+
+    fun getMoviesNowPlayingData() {
         val request = repository.getMoviesNowPlaying(page)
 
         request.enqueue(object : Callback<MovieNowPlayingModel> {
@@ -34,6 +42,22 @@ class HomeMoviesViewModel @Inject constructor(
                 _moviesNowPlayingModel.postValue(response.body())
             }
             override fun onFailure(call: Call<MovieNowPlayingModel>, t: Throwable) {
+                errorMessage.postValue(t.message)
+            }
+        })
+    }
+
+    fun getMoviesTopRatedData() {
+        val request = repository.getTopRatedMovie()
+
+        request.enqueue(object : Callback<MovieTopRatedModel> {
+            override fun onResponse(
+                call: Call<MovieTopRatedModel>,
+                response: Response<MovieTopRatedModel>
+            ) {
+                _moviesTopRatedModel.postValue(response.body())
+            }
+            override fun onFailure(call: Call<MovieTopRatedModel>, t: Throwable) {
                 errorMessage.postValue(t.message)
             }
         })

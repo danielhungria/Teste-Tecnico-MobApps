@@ -9,4 +9,6 @@ class Repository @Inject constructor(private val retrofitService: RetrofitServic
 
     fun getDetailMovie(id: Int) = retrofitService.getDetailMovie(id)
 
+    fun getTopRatedMovie() = retrofitService.getTopRatedMovie()
+
 }

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.dhungria.mobappsmovies.R
@@ -16,6 +17,7 @@ import br.com.dhungria.mobappsmovies.databinding.DetailMoviesFragmentBinding
 import br.com.dhungria.mobappsmovies.extensions.tryLoadImage
 import br.com.dhungria.mobappsmovies.viewmodel.DetailMoviesViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class DetailMovieFragment : Fragment() {
@@ -56,6 +58,16 @@ class DetailMovieFragment : Fragment() {
         }
     }
 
+    private fun setupSwipeRefresh() = with(binding){
+        detailMovieFragmentSwipeRefresh.setOnRefreshListener {
+            lifecycleScope.launch {
+                movieID?.let { viewModel.getMoviesNowPlayingData(it) }
+                detailMovieFragmentSwipeRefresh.isRefreshing = false
+            }
+        }
+    }
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -68,8 +80,8 @@ class DetailMovieFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecycler()
+        setupSwipeRefresh()
         binding.toolbarDetailMovieFragment.setNavigationOnClickListener { findNavController().popBackStack() }
-        binding.bookmarkDetailMovie.setOnClickListener { it.setBackgroundResource(R.drawable.ic_baseline_bookmark_24) }
         movieID?.let { viewModel.getMoviesNowPlayingData(it) }
         viewModel.detailMovieModel.observe(viewLifecycleOwner) { setupItemsView(it) }
     }

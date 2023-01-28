@@ -1,5 +1,6 @@
 package br.com.dhungria.mobappsmovies.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -33,6 +34,7 @@ class DetailMoviesViewModel @Inject constructor(
                 response: Response<MovieDetailsModel>
             ) {
                 _detailMovieModel.postValue(response.body())
+                Log.i("apiRequest", "onResponse: ${response.body()}")
             }
             override fun onFailure(call: Call<MovieDetailsModel>, t: Throwable) {
                 errorMessage.postValue(t.message)

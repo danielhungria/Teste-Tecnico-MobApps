@@ -2,6 +2,7 @@ package br.com.dhungria.mobappsmovies.data.retrofit
 
 import br.com.dhungria.mobappsmovies.data.models.MovieDetailsModel
 import br.com.dhungria.mobappsmovies.data.models.MovieNowPlayingModel
+import br.com.dhungria.mobappsmovies.data.models.MovieTopRatedModel
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -23,5 +24,9 @@ interface RetrofitService {
     fun getDetailMovie(
         @Path("ID_MOVIE") id: Int
     ): Call<MovieDetailsModel>
+
+    @GET("popular?api_key=9a8c5b27ecbe0c0f832b960e70865d8d&language=pt-BR&page=1")
+    fun getTopRatedMovie() : Call<MovieTopRatedModel>
+
 
 }
