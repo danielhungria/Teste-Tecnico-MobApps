@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">MobApps Movies</string>
+    <string name="text_average_movie">⭐ %1$s/10</string>
+    <string name="movie_detail_average_movie">%1$s/10</string>
+    <string name="movie_detail_time_duration">%1$sh %2$smin</string>
+    <string name="em_cartaz">Em cartaz</string>
+    <string name="popular_tag">#Popular</string>
+    <string name="titulo_filme">Título Filme</string>
+    <string name="descricao">Descrição</string>
 </resources>

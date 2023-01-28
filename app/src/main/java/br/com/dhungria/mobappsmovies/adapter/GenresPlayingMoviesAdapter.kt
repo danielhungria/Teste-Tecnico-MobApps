@@ -6,8 +6,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import br.com.dhungria.mobappsmovies.data.models.Genre
-import br.com.dhungria.mobappsmovies.data.models.MovieDetailsModel
-import br.com.dhungria.mobappsmovies.data.models.Result
 import br.com.dhungria.mobappsmovies.databinding.CardViewRecyclerGenresDetailBinding
 
 class GenresPlayingMoviesAdapter() :
@@ -17,18 +15,15 @@ class GenresPlayingMoviesAdapter() :
 
     fun updateList(listMoviesNowPlaying: List<Genre>) {
         fullList = listMoviesNowPlaying.toMutableList()
-
         submitList(fullList)
     }
 
     inner class ViewHolder(
         private val binding: CardViewRecyclerGenresDetailBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-
         fun bind(currentItem: Genre) = with(binding) {
             textViewGenreCardMovieDetail.text = currentItem.name
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -52,6 +47,4 @@ class GenresPlayingMoviesAdapter() :
         override fun areContentsTheSame(oldItem: Genre, newItem: Genre) =
             oldItem == newItem
     }
-
-
 }

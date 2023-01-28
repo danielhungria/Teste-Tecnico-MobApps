@@ -5,10 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import br.com.dhungria.mobappsmovies.R
+import br.com.dhungria.mobappsmovies.constants.Constants.DATE_PATTERN_DEFAULT
+import br.com.dhungria.mobappsmovies.constants.Constants.DATE_PATTERN_Y_M_D
 import br.com.dhungria.mobappsmovies.data.models.Result
+import br.com.dhungria.mobappsmovies.data.retrofit.URL_LOAD_IMAGE
 import br.com.dhungria.mobappsmovies.databinding.CardViewRecyclerNowPlayingBinding
 import br.com.dhungria.mobappsmovies.extensions.tryLoadImage
-import com.bumptech.glide.Glide
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -21,31 +24,30 @@ class NowPlayingMoviesAdapter(
 
     fun updateList(listMoviesNowPlaying: List<Result>) {
         fullList = listMoviesNowPlaying.toMutableList()
-
         submitList(fullList)
     }
 
     inner class ViewHolder(
         private val binding: CardViewRecyclerNowPlayingBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(currentItem: Result) = with(binding){
-
+        fun bind(currentItem: Result) = with(binding) {
             val dateDefault = currentItem.release_date
-            val parser = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-            val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+            val parser = SimpleDateFormat(DATE_PATTERN_Y_M_D, Locale.getDefault())
+            val formatter = SimpleDateFormat(DATE_PATTERN_DEFAULT, Locale.getDefault())
             val result = parser.parse(dateDefault)?.let { formatter.format(it) }
 
             textViewTitleMovieCardNowPlaying.text = currentItem.title
-            textViewAverageMovieCardNowPlaying.text = "⭐ ️${currentItem.vote_average}/10"
+            textViewAverageMovieCardNowPlaying.text = root.context.getString(
+                R.string.text_average_movie,
+                currentItem.vote_average.toString()
+            )
             binding.textViewDateMovieCardNowPlaying.text = result
-            imageViewCardViewNowPlaying.tryLoadImage("https://image.tmdb.org/t/p/original${currentItem.poster_path}")
+            imageViewCardViewNowPlaying.tryLoadImage(URL_LOAD_IMAGE + (currentItem.poster_path))
 
             root.setOnClickListener {
                 onClick(currentItem)
             }
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -69,6 +71,4 @@ class NowPlayingMoviesAdapter(
         override fun areContentsTheSame(oldItem: Result, newItem: Result) =
             oldItem == newItem
     }
-
-
 }

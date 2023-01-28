@@ -1,11 +1,9 @@
 package br.com.dhungria.mobappsmovies.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.dhungria.mobappsmovies.data.models.MovieDetailsModel
-import br.com.dhungria.mobappsmovies.data.models.MovieNowPlayingModel
 import br.com.dhungria.mobappsmovies.repositories.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
@@ -34,8 +32,8 @@ class DetailMoviesViewModel @Inject constructor(
                 response: Response<MovieDetailsModel>
             ) {
                 _detailMovieModel.postValue(response.body())
-                Log.i("apiRequest", "onResponse: ${response.body()}")
             }
+
             override fun onFailure(call: Call<MovieDetailsModel>, t: Throwable) {
                 errorMessage.postValue(t.message)
             }

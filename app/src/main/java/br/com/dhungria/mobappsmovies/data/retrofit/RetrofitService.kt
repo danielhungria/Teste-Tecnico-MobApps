@@ -9,6 +9,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 const val BASE_URL = "https://api.themoviedb.org/3/movie/"
+const val URL_LOAD_IMAGE = "https://image.tmdb.org/t/p/original"
 const val KEY_API = "9a8c5b27ecbe0c0f832b960e70865d8d"
 const val LANGUAGE = "pt-BR"
 
@@ -25,8 +26,8 @@ interface RetrofitService {
         @Path("ID_MOVIE") id: Int
     ): Call<MovieDetailsModel>
 
-    @GET("popular?api_key=9a8c5b27ecbe0c0f832b960e70865d8d&language=pt-BR&page=1")
-    fun getTopRatedMovie() : Call<MovieTopRatedModel>
+    @GET("popular?api_key=$KEY_API&language=$LANGUAGE&page=1")
+    fun getTopRatedMovie(): Call<MovieTopRatedModel>
 
 
 }

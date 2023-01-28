@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.dhungria.mobappsmovies.R
 import br.com.dhungria.mobappsmovies.adapter.NowPlayingMoviesAdapter
 import br.com.dhungria.mobappsmovies.adapter.PopularMoviesAdapter
+import br.com.dhungria.mobappsmovies.constants.Constants.MOVIE_ID_TO_DETAIL
 import br.com.dhungria.mobappsmovies.data.models.MovieNowPlayingModel
 import br.com.dhungria.mobappsmovies.databinding.HomeMoviesFragmentBinding
 import br.com.dhungria.mobappsmovies.viewmodel.HomeMoviesViewModel
@@ -23,23 +24,20 @@ import kotlinx.coroutines.launch
 class HomeMoviesFragment : Fragment() {
 
     private lateinit var binding: HomeMoviesFragmentBinding
-
+    private val viewModel: HomeMoviesViewModel by viewModels()
     private val popularMoviesAdapter = PopularMoviesAdapter(
         onClick = {
             findNavController().navigate(
                 R.id.action_home_movies_to_detail_movie,
-                bundleOf("movie_id_to_detail" to it.id)
+                bundleOf(MOVIE_ID_TO_DETAIL to it.id)
             )
         }
     )
-
-    private val viewModel: HomeMoviesViewModel by viewModels()
-
     private val nowPlayingMoviesAdapter = NowPlayingMoviesAdapter(
         onClick = {
             findNavController().navigate(
                 R.id.action_home_movies_to_detail_movie,
-                bundleOf("movie_id_to_detail" to it.id)
+                bundleOf(MOVIE_ID_TO_DETAIL to it.id)
             )
         }
     )
@@ -64,9 +62,7 @@ class HomeMoviesFragment : Fragment() {
     }
 
     private fun setupPageListener(it: MovieNowPlayingModel) = with(binding) {
-
         var page = viewModel.page
-
         textViewPageNumber.text = it.page.toString()
         buttonNavigateNextPage.setOnClickListener { _ ->
             if (page < it.total_pages) {
@@ -85,7 +81,7 @@ class HomeMoviesFragment : Fragment() {
 
     }
 
-    private fun setupSwipeRefresh() = with(binding){
+    private fun setupSwipeRefresh() = with(binding) {
         homeFragmentSwipeRefresh.setOnRefreshListener {
             lifecycleScope.launch {
                 viewModel.getMoviesNowPlayingData()
@@ -116,9 +112,8 @@ class HomeMoviesFragment : Fragment() {
             nowPlayingMoviesAdapter.updateList(it.results)
             setupPageListener(it)
         }
-        viewModel.moviesTopRatedModel.observe(viewLifecycleOwner){
+        viewModel.moviesTopRatedModel.observe(viewLifecycleOwner) {
             popularMoviesAdapter.updateList(it.results)
         }
-
     }
 }

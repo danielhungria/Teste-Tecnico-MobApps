@@ -5,7 +5,7 @@ import br.com.dhungria.mobappsmovies.R
 import coil.load
 
 fun ImageView.tryLoadImage(
-    url: String? = null,
+    url: String? = "",
     fallback: Int = R.drawable.image_default
 ) {
     load(url) {

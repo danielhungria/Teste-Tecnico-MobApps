@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import br.com.dhungria.mobappsmovies.data.models.Result_Top_Rated
+import br.com.dhungria.mobappsmovies.data.retrofit.URL_LOAD_IMAGE
 import br.com.dhungria.mobappsmovies.databinding.LayoutRecyclerPopularMoviesBinding
 import br.com.dhungria.mobappsmovies.extensions.tryLoadImage
 
@@ -19,17 +20,14 @@ class PopularMoviesAdapter(
 
     fun updateList(listMovieTopRated: List<Result_Top_Rated>) {
         fullList = listMovieTopRated.toMutableList()
-
         submitList(fullList)
     }
 
     inner class ViewHolder(
         private val binding: LayoutRecyclerPopularMoviesBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-
         fun bind(currentItem: Result_Top_Rated) = with(binding) {
-            imageCardView.tryLoadImage("https://image.tmdb.org/t/p/original${currentItem.poster_path}")
-
+            imageCardView.tryLoadImage(URL_LOAD_IMAGE + (currentItem.poster_path))
             root.setOnClickListener {
                 onClick(currentItem)
             }
@@ -57,6 +55,4 @@ class PopularMoviesAdapter(
         override fun areContentsTheSame(oldItem: Result_Top_Rated, newItem: Result_Top_Rated) =
             oldItem == newItem
     }
-
-
 }

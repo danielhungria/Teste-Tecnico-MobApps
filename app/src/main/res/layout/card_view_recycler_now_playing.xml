@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_view_now_playing"
+        style="@style/Widget.Material3.CardView.Elevated"
         android:layout_width="200dp"
         android:layout_height="300dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="15dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
-        style="@style/Widget.Material3.CardView.Elevated">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -23,15 +24,14 @@
                 android:id="@+id/image_view_card_view_now_playing"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/avatar_2_poster"
-                android:scaleType="centerCrop">
-            </ImageView>
+                android:scaleType="centerCrop"
+                android:src="@drawable/image_default" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:background="@drawable/gradient_bottom"/>
+                android:background="@drawable/gradient_bottom"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -41,42 +41,39 @@
         android:id="@+id/text_view_title_movie_card_now_playing"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/card_view_now_playing"
-        app:layout_constraintStart_toStartOf="@+id/card_view_now_playing"
-        app:layout_constraintEnd_toEndOf="@id/card_view_now_playing"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="2dp"
-        android:text="Avatar 2 - The Way of Water"
+        android:layout_marginTop="10dp"
         android:ellipsize="end"
         android:maxLines="1"
+        android:textColor="#E8E8E8"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:textColor="#E8E8E8"
-        />
+        app:layout_constraintEnd_toEndOf="@id/card_view_now_playing"
+        app:layout_constraintStart_toStartOf="@+id/card_view_now_playing"
+        app:layout_constraintTop_toBottomOf="@+id/card_view_now_playing"
+        tools:text="Avatar 2 - The Way of Water" />
 
 
     <TextView
         android:id="@+id/text_view_date_movie_card_now_playing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_title_movie_card_now_playing"
-        app:layout_constraintStart_toStartOf="@+id/text_view_title_movie_card_now_playing"
         android:layout_marginTop="4dp"
-        android:textSize="12sp"
-        android:text="14/12/2022"
         android:textColor="#E8E8E8"
-        />
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/text_view_title_movie_card_now_playing"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_title_movie_card_now_playing"
+        tools:text="14/12/2022" />
 
     <TextView
         android:id="@+id/text_view_average_movie_card_now_playing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_date_movie_card_now_playing"
-        app:layout_constraintStart_toStartOf="@+id/text_view_date_movie_card_now_playing"
         android:layout_marginTop="4dp"
-        android:textSize="12sp"
-        android:text="⭐️ 8/10"
         android:textColor="#E8E8E8"
-        />
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/text_view_date_movie_card_now_playing"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_date_movie_card_now_playing"
+        tools:text="⭐️ 8/10" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

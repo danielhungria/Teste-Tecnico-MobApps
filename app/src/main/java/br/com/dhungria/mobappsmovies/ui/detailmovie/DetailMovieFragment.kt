@@ -1,7 +1,6 @@
 package br.com.dhungria.mobappsmovies.ui.detailmovie
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.dhungria.mobappsmovies.R
 import br.com.dhungria.mobappsmovies.adapter.GenresPlayingMoviesAdapter
+import br.com.dhungria.mobappsmovies.constants.Constants.MOVIE_ID_TO_DETAIL
 import br.com.dhungria.mobappsmovies.data.models.MovieDetailsModel
+import br.com.dhungria.mobappsmovies.data.retrofit.URL_LOAD_IMAGE
 import br.com.dhungria.mobappsmovies.databinding.DetailMoviesFragmentBinding
 import br.com.dhungria.mobappsmovies.extensions.tryLoadImage
 import br.com.dhungria.mobappsmovies.viewmodel.DetailMoviesViewModel
@@ -26,7 +27,7 @@ class DetailMovieFragment : Fragment() {
 
     private val viewModel: DetailMoviesViewModel by viewModels()
 
-    private val movieID by lazy { arguments?.getInt("movie_id_to_detail") }
+    private val movieID by lazy { arguments?.getInt(MOVIE_ID_TO_DETAIL) }
 
     private val genresMoviesAdapter = GenresPlayingMoviesAdapter()
 
@@ -34,18 +35,22 @@ class DetailMovieFragment : Fragment() {
     private fun setupItemsView(movieDetailsModel: MovieDetailsModel?) = with(binding) {
         movieDetailsModel?.let {
             val runtimeMovie = movieDetailsModel.runtime.toLong()
-            val hour = runtimeMovie / 60
-            val minutes = runtimeMovie % 60
+            val hour = (runtimeMovie / 60).toString()
+            val minutes = (runtimeMovie % 60).toString()
 
             textViewTitleDetailMovie.text = movieDetailsModel.title
             textViewDescriptionDetailMovie.text = movieDetailsModel.overview
-            textViewRatedMovieDetail.text = "${movieDetailsModel?.vote_average}/10"
-            textViewTimeDurationDetailMovie.text = "${hour}h ${minutes}min"
+            textViewRatedMovieDetail.text = getString(
+                R.string.movie_detail_average_movie,
+                movieDetailsModel.vote_average.toString()
+            )
+            textViewTimeDurationDetailMovie.text =
+                getString(R.string.movie_detail_time_duration, hour, minutes)
 
             genresMoviesAdapter.updateList(it.genres)
 
             imageViewDetailMovieFragment
-                .tryLoadImage("https://image.tmdb.org/t/p/original${movieDetailsModel.backdrop_path}")
+                .tryLoadImage(URL_LOAD_IMAGE + (movieDetailsModel.backdrop_path))
         }
     }
 
@@ -58,7 +63,7 @@ class DetailMovieFragment : Fragment() {
         }
     }
 
-    private fun setupSwipeRefresh() = with(binding){
+    private fun setupSwipeRefresh() = with(binding) {
         detailMovieFragmentSwipeRefresh.setOnRefreshListener {
             lifecycleScope.launch {
                 movieID?.let { viewModel.getMoviesNowPlayingData(it) }
@@ -85,6 +90,4 @@ class DetailMovieFragment : Fragment() {
         movieID?.let { viewModel.getMoviesNowPlayingData(it) }
         viewModel.detailMovieModel.observe(viewLifecycleOwner) { setupItemsView(it) }
     }
-
-
 }

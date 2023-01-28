@@ -41,6 +41,7 @@ class HomeMoviesViewModel @Inject constructor(
             ) {
                 _moviesNowPlayingModel.postValue(response.body())
             }
+
             override fun onFailure(call: Call<MovieNowPlayingModel>, t: Throwable) {
                 errorMessage.postValue(t.message)
             }
@@ -57,6 +58,7 @@ class HomeMoviesViewModel @Inject constructor(
             ) {
                 _moviesTopRatedModel.postValue(response.body())
             }
+
             override fun onFailure(call: Call<MovieTopRatedModel>, t: Throwable) {
                 errorMessage.postValue(t.message)
             }
