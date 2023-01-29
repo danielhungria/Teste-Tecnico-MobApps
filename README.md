@@ -16,7 +16,7 @@
 
 - Navigation
 
-- Data Binding
+- View Binding
 
 - Hilt - Utilizado para injeção de dependências.
     
