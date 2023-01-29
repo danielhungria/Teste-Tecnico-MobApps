@@ -66,7 +66,7 @@ class NowPlayingMoviesAdapter(
 
     class DiffCallback : DiffUtil.ItemCallback<Result>() {
         override fun areItemsTheSame(oldItem: Result, newItem: Result) =
-            oldItem == newItem
+            oldItem.id == newItem.id
 
         override fun areContentsTheSame(oldItem: Result, newItem: Result) =
             oldItem == newItem

@@ -42,7 +42,7 @@ class GenresPlayingMoviesAdapter() :
 
     class DiffCallback : DiffUtil.ItemCallback<Genre>() {
         override fun areItemsTheSame(oldItem: Genre, newItem: Genre) =
-            oldItem == newItem
+            oldItem.id == newItem.id
 
         override fun areContentsTheSame(oldItem: Genre, newItem: Genre) =
             oldItem == newItem
