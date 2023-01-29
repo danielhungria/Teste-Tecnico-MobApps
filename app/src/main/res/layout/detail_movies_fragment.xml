@@ -35,7 +35,8 @@
                     android:scaleType="centerCrop"
                     android:src="@drawable/image_default"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
 
                 <View
                     android:id="@+id/gradient_bottom_view_image_detail"
