@@ -79,4 +79,9 @@ dependencies {
 
     //swipe refresh
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
+    //parse
+    implementation "com.github.parse-community.Parse-SDK-Android:parse:4.1.0"
+    implementation 'com.github.parse-community:ParseLiveQuery-Android:1.2.2'
+
 }

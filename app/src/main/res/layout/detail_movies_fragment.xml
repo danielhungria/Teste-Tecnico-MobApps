@@ -36,7 +36,8 @@
                     android:src="@drawable/image_default"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    app:layout_constraintEnd_toEndOf="parent" />
+
 
                 <View
                     android:id="@+id/gradient_bottom_view_image_detail"
@@ -51,6 +52,16 @@
                     android:layout_height="70dp"
                     android:background="@drawable/gradient_top"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/favorite_button_detail_movie"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:layout_constraintBottom_toTopOf="@+id/card_view_detail_movie_vote"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/baseline_favorite_border_24" />
 
 
                 <com.google.android.material.appbar.AppBarLayout
@@ -78,6 +89,7 @@
                 </com.google.android.material.appbar.AppBarLayout>
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_view_detail_movie_vote"
                     style="@style/Widget.Material3.CardView.Elevated"
                     android:layout_width="150dp"
                     android:layout_height="70dp"
