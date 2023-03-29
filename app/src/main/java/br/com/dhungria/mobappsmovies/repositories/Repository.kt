@@ -11,4 +11,6 @@ class Repository @Inject constructor(private val retrofitService: RetrofitServic
 
     fun getTopRatedMovie() = retrofitService.getTopRatedMovie()
 
+    fun searchMovie(queryMovie: String) = retrofitService.searchMovie(queryMovie)
+
 }
