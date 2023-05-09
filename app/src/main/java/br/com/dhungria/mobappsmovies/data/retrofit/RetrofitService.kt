@@ -26,12 +26,18 @@ interface RetrofitService {
         @Path("ID_MOVIE") id: Int
     ): Call<MovieDetailsModel>
 
-    @GET("movie/popular?api_key=$KEY_API&language=$LANGUAGE&page=1")
+    @GET("movie/popular?api_key=$KEY_API&language=$LANGUAGE")
     fun getTopRatedMovie(): Call<MovieTopRatedModel>
 
-    @GET("search/movie?api_key=$KEY_API&language=$LANGUAGE&page=1&include_adult=false")
+    @GET("search/movie?api_key=$KEY_API&language=$LANGUAGE")
     fun searchMovie(
         @Query("query") queryMovie: String
+    ): Call<MovieNowPlayingModel>
+
+    @GET("movie/{ID_MOVIE}/recommendations?api_key=$KEY_API&language=$LANGUAGE")
+    fun getMovieRecommendations(
+        @Path("ID_MOVIE") id: Int,
+        @Query("page") page: Int
     ): Call<MovieNowPlayingModel>
 
 

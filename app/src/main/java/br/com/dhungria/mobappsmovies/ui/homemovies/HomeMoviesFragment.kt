@@ -43,6 +43,42 @@ class HomeMoviesFragment : Fragment() {
     )
 
 
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = HomeMoviesFragmentBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupRecyclerPopularMovies()
+        setupRecyclerNowPlayingMovies()
+        lifecycleScope.launch {
+            viewModel.getMoviesNowPlayingData()
+            viewModel.getMoviesTopRatedData()
+        }
+        viewModel.moviesNowPlayingModel.observe(viewLifecycleOwner) {
+            nowPlayingMoviesAdapter.updateList(it.results)
+            setupPageListener(it)
+        }
+        viewModel.moviesTopRatedModel.observe(viewLifecycleOwner) { popularMoviesAdapter.updateList(it.results) }
+
+        setupButtonCombineMovies()
+
+    }
+
+    private fun setupButtonCombineMovies() {
+//        binding.buttonCombineMovies.setOnClickListener {
+//            findNavController().navigate(R.id.action_home_movies_to_combine_movies)
+//        }
+    }
+
+
+
     private fun setupRecyclerPopularMovies() {
         binding.recyclerViewPopularMoviesHomeFragment.apply {
             adapter = popularMoviesAdapter
@@ -78,42 +114,5 @@ class HomeMoviesFragment : Fragment() {
                 viewModel.getMoviesNowPlayingData()
             }
         }
-
-    }
-
-    private fun setupSwipeRefresh() = with(binding) {
-        homeFragmentSwipeRefresh.setOnRefreshListener {
-            lifecycleScope.launch {
-                viewModel.getMoviesNowPlayingData()
-                viewModel.getMoviesTopRatedData()
-                homeFragmentSwipeRefresh.isRefreshing = false
-            }
-        }
-    }
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = HomeMoviesFragmentBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setupRecyclerPopularMovies()
-        setupRecyclerNowPlayingMovies()
-        setupSwipeRefresh()
-        lifecycleScope.launch {
-            viewModel.getMoviesNowPlayingData()
-            viewModel.getMoviesTopRatedData()
-        }
-        viewModel.moviesNowPlayingModel.observe(viewLifecycleOwner) {
-            nowPlayingMoviesAdapter.updateList(it.results)
-            setupPageListener(it)
-        }
-        viewModel.moviesTopRatedModel.observe(viewLifecycleOwner) { popularMoviesAdapter.updateList(it.results) }
     }
 }

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/couple_choose_movies_fragment">
+    app:startDestination="@id/home_movies_fragment">
 
     <fragment
         android:id="@+id/home_movies_fragment"
@@ -14,6 +14,10 @@
         <action
             android:id="@+id/action_home_movies_to_detail_movie"
             app:destination="@+id/detail_movie_fragment" />
+        <action
+            android:id="@+id/action_home_movies_to_combine_movies"
+            app:destination="@+id/couple_choose_movies_fragment"
+            />
 
     </fragment>
 
@@ -29,6 +33,12 @@
         android:name="br.com.dhungria.mobappsmovies.ui.combinemovies.CombineMoviesFragment"
         android:label="Combine Movies"
         tools:layout="@layout/couple_choose_movies_fragment"
-        />
+        >
+
+        <action
+            android:id="@+id/action_combine_movies_to_detail_movie"
+            app:destination="@+id/detail_movie_fragment" />
+
+    </fragment>
 
 </navigation>

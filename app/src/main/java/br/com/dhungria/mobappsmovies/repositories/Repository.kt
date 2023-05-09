@@ -13,4 +13,6 @@ class Repository @Inject constructor(private val retrofitService: RetrofitServic
 
     fun searchMovie(queryMovie: String) = retrofitService.searchMovie(queryMovie)
 
+    fun getMovieRecommendations(id: Int, page: Int) = retrofitService.getMovieRecommendations(id, page)
+
 }
