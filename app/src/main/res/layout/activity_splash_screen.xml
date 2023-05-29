@@ -8,38 +8,27 @@
     tools:context=".ui.splashscreen.SplashScreenActivity">
 
     <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progress_indicator_splash"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/textview_name_splash_screen"
+        app:layout_constraintTop_toBottomOf="@id/logo_image_view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:indeterminate="true"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="-20dp"
         android:layout_marginHorizontal="50dp"
-        app:indicatorColor="#0073F0"
+        app:indicatorColor="#A074EF"
         />
 
-    <TextView
-        android:id="@+id/textview_name_splash_screen"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:text="@string/movies"
-        android:textColor="#BCBCBC"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        />
 
     <ImageView
+        android:id="@+id/logo_image_view"
         android:layout_width="0dp"
-        android:layout_height="120dp"
-        app:layout_constraintBottom_toTopOf="@+id/textview_name_splash_screen"
+        android:layout_height="400dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/marca_mobapps"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/logo"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

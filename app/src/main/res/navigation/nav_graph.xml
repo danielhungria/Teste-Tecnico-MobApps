@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/home_movies_fragment"
-        android:name="br.com.dhungria.mobappsmovies.ui.homemovies.HomeMoviesFragment"
+        android:name="br.com.dhungria.combinedatemovies.ui.homemovies.HomeMoviesFragment"
         android:label="Home Movies Fragment"
         tools:layout="@layout/home_movies_fragment">
 
@@ -24,13 +24,13 @@
 
     <fragment
         android:id="@+id/detail_movie_fragment"
-        android:name="br.com.dhungria.mobappsmovies.ui.detailmovie.DetailMovieFragment"
+        android:name="br.com.dhungria.combinedatemovies.ui.detailmovie.DetailMovieFragment"
         android:label="Detail Movie Fragment"
         tools:layout="@layout/detail_movies_fragment" />
 
     <fragment
         android:id="@+id/couple_choose_movies_fragment"
-        android:name="br.com.dhungria.mobappsmovies.ui.combinemovies.CombineMoviesFragment"
+        android:name="br.com.dhungria.combinedatemovies.ui.combinemovies.CombineMoviesFragment"
         android:label="Combine Movies"
         tools:layout="@layout/couple_choose_movies_fragment"
         >
@@ -40,5 +40,11 @@
             app:destination="@+id/detail_movie_fragment" />
 
     </fragment>
+
+    <fragment
+        android:id="@+id/support_fragment"
+        android:name="br.com.dhungria.combinedatemovies.ui.support.SupportFragment"
+        tools:layout="@layout/support_fragment"
+        android:label="support_fragment"/>
 
 </navigation>

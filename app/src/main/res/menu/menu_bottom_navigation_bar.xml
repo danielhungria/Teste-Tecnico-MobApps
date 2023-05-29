@@ -15,4 +15,11 @@
         android:title="Combine"
         />
 
+    <item
+        android:id="@+id/support_fragment"
+        android:enabled="true"
+        android:title="Support"
+        android:icon="@drawable/baseline_contact_support_24"
+        />
+
 </menu>

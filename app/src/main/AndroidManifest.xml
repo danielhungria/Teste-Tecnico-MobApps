@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="br.com.dhungria.mobappsmovies">
+    package="br.com.dhungria.combinedatemovies">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
 
     <application
-        android:name=".application.MainApplication"
+        android:name="br.com.dhungria.combinedatemovies.application.MainApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/mobapps_icon"
+        android:icon="@drawable/icon2"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/mobapps_icon"
+        android:roundIcon="@drawable/icon2"
         android:supportsRtl="true"
         android:theme="@style/Theme.MobAppsMovies"
         tools:targetApi="31">
 
-        <activity android:name=".ui.splashscreen.SplashScreenActivity"
+        <activity android:name="br.com.dhungria.combinedatemovies.ui.splashscreen.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +28,12 @@
         </activity>
 
         <activity
-            android:name=".MainActivity" />
+            android:name="br.com.dhungria.combinedatemovies.MainActivity" />
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-1398509773631594~4707986213"/>
+
     </application>
 
 </manifest>
