@@ -30,9 +30,22 @@
         <activity
             android:name="br.com.dhungria.combinedatemovies.MainActivity" />
 
+        <service
+            android:name="br.com.dhungria.firebase.MyFirebaseMessagingService"
+            android:exported="false"
+            tools:ignore="Instantiatable">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-1398509773631594~4707986213"/>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/icon2" />
 
     </application>
 
